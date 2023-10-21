@@ -107,8 +107,19 @@ $(function() {
     resize()
     ////////////////////////////////////////
 })
-</script>
-    <style class="silex-inline-styles">.body-initial {background-color: rgba(255,255,255,1); position: static;}.silex-id-1478366444112-1 {background-color: transparent; position: static; margin-top: -1px;}.silex-id-1478366444112-0 {background-color: transparent; min-height: 100px; position: relative; margin-left: auto; margin-right: auto;}.silex-id-1474394621033-3 {position: static; margin-top: -1px;}.silex-id-1474394621032-2 {background-color: transparent; min-height: 600px; position: relative; margin-left: auto; margin-right: auto;}.silex-id-1478366450713-3 {background-color: transparent; position: static; margin-top: -1px;}.silex-id-1478366450713-2 {background-color: transparent; min-height: 100px; position: relative; margin-left: auto; margin-right: auto;}.silex-id-1442914737143-3 {width: 241px; top: 26px; left: 494px; min-height: 51px; position: absolute;}.silex-id-1697886616177-0 {width: 63px; min-height: 51px; position: absolute; top: 90px; left: 292px;}@media only screen and (max-width: 480px) {}</style>
+
+$(function() {
+    // auto play all pages
+    var idx = 0;
+    var pages = $('.page-element');
+    setInterval(function() {
+        idx++;
+        if(idx >= pages.length) idx = 0;
+        var pageElement = pages.get(idx);
+        window.location.hash= '#!' + pageElement.id;
+    }, 5000);
+})</script>
+    <style class="silex-inline-styles">.body-initial {background-color: rgba(255,255,255,1); position: static;}.silex-id-1478366444112-1 {background-color: transparent; position: static; margin-top: -1px;}.silex-id-1478366444112-0 {background-color: transparent; min-height: 100px; position: relative; margin-left: auto; margin-right: auto;}.silex-id-1474394621033-3 {position: static; margin-top: -1px;}.silex-id-1474394621032-2 {background-color: transparent; min-height: 600px; position: relative; margin-left: auto; margin-right: auto;}.silex-id-1478366450713-3 {background-color: transparent; position: static; margin-top: -1px;}.silex-id-1478366450713-2 {background-color: transparent; min-height: 100px; position: relative; margin-left: auto; margin-right: auto;}.silex-id-1442914737143-3 {width: 241px; top: 26px; left: 494px; min-height: 51px; position: absolute;}.silex-id-1697886616177-0 {width: 63px; min-height: 51px; position: absolute; top: 90px; left: 292px;}.silex-id-1697887381617-0 {width: 1201px; height: 750.625px; position: absolute; top: -2.75px; left: -1px;}@media only screen and (max-width: 480px) {}</style>
     <title></title>
     
 
@@ -130,7 +141,7 @@ $(function() {
         <div data-silex-type="container-element" class="editable-style silex-element-content silex-id-1478366444112-0 container-element website-width" data-silex-id="silex-id-1478366444112-0"></div>
     </section>
     <section data-silex-type="container-element" class="container-element editable-style silex-id-1474394621033-3 section-element prevent-resizable page-page-1 paged-element" data-silex-id="silex-id-1474394621033-3">
-        <div data-silex-type="container-element" class="editable-style silex-element-content silex-id-1474394621032-2 container-element website-width selected" data-silex-id="silex-id-1474394621032-2"><div data-silex-type="text-element" class="editable-style text-element silex-id-1697886616177-0 thumb delay1000s from-left" data-silex-id="silex-id-1697886616177-0" style=""><div class="silex-element-content normal"><p>HAMZA</p><span class="_wysihtml-temp-caret-fix" style="position: absolute; display: block; min-width: 1px; z-index: 99999;">﻿</span></div></div></div>
+        <div data-silex-type="container-element" class="editable-style silex-element-content silex-id-1474394621032-2 container-element website-width selected" data-silex-id="silex-id-1474394621032-2"><div data-silex-type="text-element" class="editable-style text-element silex-id-1697886616177-0 thumb delay1000s from-left" data-silex-id="silex-id-1697886616177-0" style=""><div class="silex-element-content normal"><p>HAMZA</p><span class="_wysihtml-temp-caret-fix" style="position: absolute; display: block; min-width: 1px; z-index: 99999;">﻿</span></div></div><div data-silex-type="image-element" class="editable-style image-element silex-id-1697887381617-0" data-silex-id="silex-id-1697887381617-0" style=""><img src="Home.png"></div></div>
     </section>
     <section data-silex-type="container-element" class="container-element editable-style silex-id-1478366450713-3 section-element prevent-resizable page-page-1 paged-element" data-silex-id="silex-id-1478366450713-3">
         <div data-silex-type="container-element" class="editable-style silex-element-content silex-id-1478366450713-2 container-element website-width" data-silex-id="silex-id-1478366450713-2">
