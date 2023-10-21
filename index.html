@@ -14,13 +14,106 @@
     <link rel="stylesheet" href="https://editor.silex.me/static/2.12/front-end.css" data-silex-static="">
 
     <style class="silex-style"></style>
-    <script type="text/javascript" class="silex-script"></script>
-    <style class="silex-inline-styles">.body-initial {background-color: rgba(255,255,255,1); position: static;}.silex-id-1478366444112-1 {background-color: transparent; position: static; margin-top: -1px;}.silex-id-1478366444112-0 {background-color: transparent; min-height: 100px; position: relative; margin-left: auto; margin-right: auto;}.silex-id-1474394621033-3 {position: static; margin-top: -1px;}.silex-id-1474394621032-2 {background-color: transparent; min-height: 600px; position: relative; margin-left: auto; margin-right: auto;}.silex-id-1478366450713-3 {background-color: transparent; position: static; margin-top: -1px;}.silex-id-1478366450713-2 {background-color: transparent; min-height: 100px; position: relative; margin-left: auto; margin-right: auto;}.silex-id-1442914737143-3 {width: 241px; top: 26px; left: 494px; min-height: 51px; position: absolute;}@media only screen and (max-width: 480px) {}</style>
+    <script type="text/javascript" class="silex-script">/*
+ * animation widget from here: https://github.com/silexlabs/Silex/issues/443
+ */
+$(function() {
+    if(silex.scale === 1) {
+	var OFFSET = $('.hero-section, [data-prevent-scale-y]').height() * (1 - silex.scale) / 2 // this is because of the hero section which is not resizeable
+	var win = $(window)
+	var size = {
+		h: win.height()
+		// , w: win.width()
+	}
+	var initial = {
+		h: size.h / silex.scale
+		// , w: size.w / silex.scale
+	}
+	var offset = {
+		h: initial.h - size.h + OFFSET
+		// , w: initial.w - size.w
+	}
+	// this function is used to apply an offset to the detection of the active boundaries of the viewport
+	// this is required when the viewport width is smaller than the website (when Silex scales down the website)
+	function getOffset(el) {
+		var position = $(el).position()
+		var localOffset = {
+			h: offset.h + (position.top * (1-silex.scale))
+			// , w: offset.w + (position.left * (1-silex.scale))
+		}
+		return {
+			top: offset.h
+			, bottom: -offset.h
+			// , left: offset.w
+			// , right: -offset.w
+		}
+	}
+	function getDelay(el) {
+		var $el = $(el);
+		if($el.hasClass('delay100')) return 100;
+		if($el.hasClass('delay200')) return 200;
+		if($el.hasClass('delay300')) return 300;
+		if($el.hasClass('delay400')) return 400;
+		if($el.hasClass('delay500')) return 500;
+		if($el.hasClass('delay600')) return 600;
+		if($el.hasClass('delay700')) return 700;
+		if($el.hasClass('delay800')) return 800;
+		if($el.hasClass('delay900')) return 900;
+		if($el.hasClass('delay1000')) return 1000;
+		return 0;
+	}
+	function getDistance(el) {
+		var $el = $(el);
+		if($el.hasClass('distance0')) return '0px';
+		if($el.hasClass('distance100')) return '100px';
+		if($el.hasClass('distance200')) return '200px';
+		if($el.hasClass('distance500')) return '500px';
+		if($el.hasClass('distance1000')) return '1000px';
+		return '100px';
+	}
+	function getScale(el) {
+		var $el = $(el);
+		if($el.hasClass('scale3_4')) return 3/4;
+		if($el.hasClass('scale2_3')) return 2/3;
+		if($el.hasClass('scale1_2')) return 1/2;
+		if($el.hasClass('scale1_3')) return 1/3;
+		if($el.hasClass('scale1_4')) return 1/4;
+		return 1;
+	}
+	var sr = ScrollReveal({
+		distance: '100px'
+		, reset: false
+	});
+	$('.from-left').each(function() {
+		sr.reveal(this, { origin:  'left', scale: getScale(this), delay: getDelay(this), distance: getDistance(this), viewOffset: getOffset(this)});
+	})
+	$('.from-right').each(function() {
+		sr.reveal(this, { origin:  'right', scale: getScale(this), delay: getDelay(this), distance: getDistance(this), viewOffset: getOffset(this)});
+	})
+	$('.from-top').each(function() {
+		sr.reveal(this, { origin:  'top', scale: getScale(this), delay: getDelay(this), distance: getDistance(this), viewOffset: getOffset(this)});
+	})
+	$('.from-bottom').each(function() {
+		sr.reveal(this, { origin:  'bottom', scale: getScale(this), delay: getDelay(this), distance: getDistance(this), viewOffset: getOffset(this)});
+	})
+    }
+    ////////////////////////////////////////
+    // FIX the height of the website as https://unpkg.com/scrollreveal is messing with it
+    function resize() {
+        $('body').css('max-height', Math.round(window.innerHeight * silex.scale))
+    }
+    $(window).resize(resize)
+    // setTimeout(function() { resize() }, 0)
+    resize()
+    ////////////////////////////////////////
+})
+</script>
+    <style class="silex-inline-styles">.body-initial {background-color: rgba(255,255,255,1); position: static;}.silex-id-1478366444112-1 {background-color: transparent; position: static; margin-top: -1px;}.silex-id-1478366444112-0 {background-color: transparent; min-height: 100px; position: relative; margin-left: auto; margin-right: auto;}.silex-id-1474394621033-3 {position: static; margin-top: -1px;}.silex-id-1474394621032-2 {background-color: transparent; min-height: 600px; position: relative; margin-left: auto; margin-right: auto;}.silex-id-1478366450713-3 {background-color: transparent; position: static; margin-top: -1px;}.silex-id-1478366450713-2 {background-color: transparent; min-height: 100px; position: relative; margin-left: auto; margin-right: auto;}.silex-id-1442914737143-3 {width: 241px; top: 26px; left: 494px; min-height: 51px; position: absolute;}.silex-id-1697886616177-0 {width: 100px; min-height: 100px; position: absolute; top: 90px; left: 292px;}@media only screen and (max-width: 480px) {}</style>
     <title></title>
     
 
     
-<style class="silex-prodotype-style" data-style-id="all-style">.text-element > .silex-element-content {font-family: 'Roboto', sans-serif;}</style><link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" class="silex-custom-font"><meta name="viewport" content="width=device-width, initial-scale=1"><style class="silex-style-settings">.website-width {width: 1200px;}@media (min-width: 481px) {.silex-editor {min-width: 1400px;}}</style></head>
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" class="silex-custom-font"><meta name="viewport" content="width=device-width, initial-scale=1"><style class="silex-style-settings">.website-width {width: 1200px;}@media (min-width: 481px) {.silex-editor {min-width: 1400px;}}</style><style class="silex-prodotype-style" data-style-id="all-style">.text-element > .silex-element-content {font-family: 'Roboto', sans-serif;}</style><style class="silex-prodotype-style" data-style-id="style-hamza"></style><!-- Silex HEAD tag do not remove --><script src="https://unpkg.com/scrollreveal"></script><!-- End of Silex HEAD tag do not remove --></head>
 
 <body data-silex-id="body-initial" class="body-initial all-style enable-mobile prevent-resizable prevent-selectable editable-style silex-runtime" data-silex-type="container-element" style="">
     
@@ -37,7 +130,7 @@
         <div data-silex-type="container-element" class="editable-style silex-element-content silex-id-1478366444112-0 container-element website-width" data-silex-id="silex-id-1478366444112-0"></div>
     </section>
     <section data-silex-type="container-element" class="container-element editable-style silex-id-1474394621033-3 section-element prevent-resizable page-page-1 paged-element" data-silex-id="silex-id-1474394621033-3">
-        <div data-silex-type="container-element" class="editable-style silex-element-content silex-id-1474394621032-2 container-element website-width selected" data-silex-id="silex-id-1474394621032-2"></div>
+        <div data-silex-type="container-element" class="editable-style silex-element-content silex-id-1474394621032-2 container-element website-width selected" data-silex-id="silex-id-1474394621032-2"><div data-silex-type="text-element" class="editable-style text-element silex-id-1697886616177-0 thumb from-bottom" data-silex-id="silex-id-1697886616177-0" style="" delay=""><div class="silex-element-content normal"><p>HAMZA</p><span class="_wysihtml-temp-caret-fix" style="position: absolute; display: block; min-width: 1px; z-index: 99999;">﻿</span></div></div></div>
     </section>
     <section data-silex-type="container-element" class="container-element editable-style silex-id-1478366450713-3 section-element prevent-resizable page-page-1 paged-element" data-silex-id="silex-id-1478366450713-3">
         <div data-silex-type="container-element" class="editable-style silex-element-content silex-id-1478366450713-2 container-element website-width" data-silex-id="silex-id-1478366450713-2">
